@@ -40,11 +40,6 @@ WHERE continent IS NOT NULL
 GROUP BY continent, location,population
 ORDER BY Highest_Death_Count DESC
 
-
-
-
-
-
 SELECT continent, MAX(cast(total_deaths as int)) AS Death_Count_By_Continent
 FROM [Portfolio Project on Covid'19 ]..CovidDeaths$
 --WHERE location = 'Nigeria'
@@ -72,7 +67,6 @@ ORDER BY 2,3
 
 
 --CTE
-
 WITH PopVsVac (continent,location,date,population,New_vaccinations,Total_Vaccinations_To_Date)
 AS
 (
@@ -90,11 +84,8 @@ SELECT *, (Total_Vaccinations_To_Date/population)*100 Percentage_Vaccinated_Till
 FROM PopVsVac
 
 
-
 --TEMP TABLE
-
 Drop Table if exists #PercentageVaccinatedTill_Date
-
 CREATE TABLE #PercentageVaccinatedTill_Date
 (
 Continent nvarchar(255),
@@ -116,12 +107,8 @@ AND dea.date=vac.date
 --WHERE dea.continent IS NOT NULL
 --ORDER BY 2,3
 
-
 SELECT *, (Total_Vaccinations_To_Date/Population)*100
 FROM #PercentageVaccinatedTill_Date
-
-
-
 
 CREATE VIEW PercentageVaccinatedTill_Date AS
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, 
